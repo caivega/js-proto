@@ -2022,7 +2022,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 var blockpb = require('./src/js/block_pb');
 
 module.exports = {
-	BlockProto: txpb
+	BlockProto: blockpb
 };
 
 },{"./src/js/block_pb":6}],5:[function(require,module,exports){
