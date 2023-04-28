@@ -2009,8 +2009,7 @@ proto.pb.Transaction.toObject = function(includeInstance, msg) {
     transactiontype: jspb.Message.getFieldWithDefault(msg, 1, 0),
     account: msg.getAccount_asB64(),
     sequence: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    amount: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    gas: jspb.Message.getFieldWithDefault(msg, 5, 0),
+    gas: jspb.Message.getFieldWithDefault(msg, 4, 0),
     destination: msg.getDestination_asB64(),
     payload: (f = msg.getPayload()) && proto.pb.PayloadInfo.toObject(includeInstance, f),
     publickey: msg.getPublickey_asB64(),
@@ -2064,27 +2063,23 @@ proto.pb.Transaction.deserializeBinaryFromReader = function(msg, reader) {
       msg.setSequence(value);
       break;
     case 4:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setAmount(value);
-      break;
-    case 5:
-      var value = /** @type {number} */ (reader.readInt64());
+      var value = /** @type {number} */ (reader.readUint64());
       msg.setGas(value);
       break;
-    case 6:
+    case 5:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setDestination(value);
       break;
-    case 7:
+    case 6:
       var value = new proto.pb.PayloadInfo;
       reader.readMessage(value,proto.pb.PayloadInfo.deserializeBinaryFromReader);
       msg.setPayload(value);
       break;
-    case 8:
+    case 7:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setPublickey(value);
       break;
-    case 9:
+    case 8:
       var value = /** @type {!Uint8Array} */ (reader.readBytes());
       msg.setSignature(value);
       break;
@@ -2138,31 +2133,24 @@ proto.pb.Transaction.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getAmount();
-  if (f.length > 0) {
-    writer.writeString(
-      4,
-      f
-    );
-  }
   f = message.getGas();
   if (f !== 0) {
-    writer.writeInt64(
-      5,
+    writer.writeUint64(
+      4,
       f
     );
   }
   f = message.getDestination_asU8();
   if (f.length > 0) {
     writer.writeBytes(
-      6,
+      5,
       f
     );
   }
   f = message.getPayload();
   if (f != null) {
     writer.writeMessage(
-      7,
+      6,
       f,
       proto.pb.PayloadInfo.serializeBinaryToWriter
     );
@@ -2170,14 +2158,14 @@ proto.pb.Transaction.serializeBinaryToWriter = function(message, writer) {
   f = message.getPublickey_asU8();
   if (f.length > 0) {
     writer.writeBytes(
-      8,
+      7,
       f
     );
   }
   f = message.getSignature_asU8();
   if (f.length > 0) {
     writer.writeBytes(
-      9,
+      8,
       f
     );
   }
@@ -2263,29 +2251,11 @@ proto.pb.Transaction.prototype.setSequence = function(value) {
 
 
 /**
- * optional string Amount = 4;
- * @return {string}
- */
-proto.pb.Transaction.prototype.getAmount = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.pb.Transaction} returns this
- */
-proto.pb.Transaction.prototype.setAmount = function(value) {
-  return jspb.Message.setProto3StringField(this, 4, value);
-};
-
-
-/**
- * optional int64 Gas = 5;
+ * optional uint64 Gas = 4;
  * @return {number}
  */
 proto.pb.Transaction.prototype.getGas = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
@@ -2294,21 +2264,21 @@ proto.pb.Transaction.prototype.getGas = function() {
  * @return {!proto.pb.Transaction} returns this
  */
 proto.pb.Transaction.prototype.setGas = function(value) {
-  return jspb.Message.setProto3IntField(this, 5, value);
+  return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
 /**
- * optional bytes Destination = 6;
+ * optional bytes Destination = 5;
  * @return {!(string|Uint8Array)}
  */
 proto.pb.Transaction.prototype.getDestination = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /**
- * optional bytes Destination = 6;
+ * optional bytes Destination = 5;
  * This is a type-conversion wrapper around `getDestination()`
  * @return {string}
  */
@@ -2319,7 +2289,7 @@ proto.pb.Transaction.prototype.getDestination_asB64 = function() {
 
 
 /**
- * optional bytes Destination = 6;
+ * optional bytes Destination = 5;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getDestination()`
@@ -2336,17 +2306,17 @@ proto.pb.Transaction.prototype.getDestination_asU8 = function() {
  * @return {!proto.pb.Transaction} returns this
  */
 proto.pb.Transaction.prototype.setDestination = function(value) {
-  return jspb.Message.setProto3BytesField(this, 6, value);
+  return jspb.Message.setProto3BytesField(this, 5, value);
 };
 
 
 /**
- * optional PayloadInfo Payload = 7;
+ * optional PayloadInfo Payload = 6;
  * @return {?proto.pb.PayloadInfo}
  */
 proto.pb.Transaction.prototype.getPayload = function() {
   return /** @type{?proto.pb.PayloadInfo} */ (
-    jspb.Message.getWrapperField(this, proto.pb.PayloadInfo, 7));
+    jspb.Message.getWrapperField(this, proto.pb.PayloadInfo, 6));
 };
 
 
@@ -2355,7 +2325,7 @@ proto.pb.Transaction.prototype.getPayload = function() {
  * @return {!proto.pb.Transaction} returns this
 */
 proto.pb.Transaction.prototype.setPayload = function(value) {
-  return jspb.Message.setWrapperField(this, 7, value);
+  return jspb.Message.setWrapperField(this, 6, value);
 };
 
 
@@ -2373,21 +2343,21 @@ proto.pb.Transaction.prototype.clearPayload = function() {
  * @return {boolean}
  */
 proto.pb.Transaction.prototype.hasPayload = function() {
-  return jspb.Message.getField(this, 7) != null;
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * optional bytes PublicKey = 8;
+ * optional bytes PublicKey = 7;
  * @return {!(string|Uint8Array)}
  */
 proto.pb.Transaction.prototype.getPublickey = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
 /**
- * optional bytes PublicKey = 8;
+ * optional bytes PublicKey = 7;
  * This is a type-conversion wrapper around `getPublickey()`
  * @return {string}
  */
@@ -2398,7 +2368,7 @@ proto.pb.Transaction.prototype.getPublickey_asB64 = function() {
 
 
 /**
- * optional bytes PublicKey = 8;
+ * optional bytes PublicKey = 7;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getPublickey()`
@@ -2415,21 +2385,21 @@ proto.pb.Transaction.prototype.getPublickey_asU8 = function() {
  * @return {!proto.pb.Transaction} returns this
  */
 proto.pb.Transaction.prototype.setPublickey = function(value) {
-  return jspb.Message.setProto3BytesField(this, 8, value);
+  return jspb.Message.setProto3BytesField(this, 7, value);
 };
 
 
 /**
- * optional bytes Signature = 9;
+ * optional bytes Signature = 8;
  * @return {!(string|Uint8Array)}
  */
 proto.pb.Transaction.prototype.getSignature = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
 
 /**
- * optional bytes Signature = 9;
+ * optional bytes Signature = 8;
  * This is a type-conversion wrapper around `getSignature()`
  * @return {string}
  */
@@ -2440,7 +2410,7 @@ proto.pb.Transaction.prototype.getSignature_asB64 = function() {
 
 
 /**
- * optional bytes Signature = 9;
+ * optional bytes Signature = 8;
  * Note that Uint8Array is not supported on all browsers.
  * @see http://caniuse.com/Uint8Array
  * This is a type-conversion wrapper around `getSignature()`
@@ -2457,7 +2427,7 @@ proto.pb.Transaction.prototype.getSignature_asU8 = function() {
  * @return {!proto.pb.Transaction} returns this
  */
 proto.pb.Transaction.prototype.setSignature = function(value) {
-  return jspb.Message.setProto3BytesField(this, 9, value);
+  return jspb.Message.setProto3BytesField(this, 8, value);
 };
 
 
@@ -3093,7 +3063,7 @@ proto.pb.AccountState.toObject = function(includeInstance, msg) {
   var f, obj = {
     state: (f = msg.getState()) && proto.pb.State.toObject(includeInstance, f),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    amount: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    gas: jspb.Message.getFieldWithDefault(msg, 3, ""),
     user: (f = msg.getUser()) && proto.pb.DataInfo.toObject(includeInstance, f),
     code: (f = msg.getCode()) && proto.pb.DataInfo.toObject(includeInstance, f),
     page: (f = msg.getPage()) && proto.pb.DataInfo.toObject(includeInstance, f),
@@ -3147,7 +3117,7 @@ proto.pb.AccountState.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAmount(value);
+      msg.setGas(value);
       break;
     case 4:
       var value = new proto.pb.DataInfo;
@@ -3223,7 +3193,7 @@ proto.pb.AccountState.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getAmount();
+  f = message.getGas();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -3337,10 +3307,10 @@ proto.pb.AccountState.prototype.setName = function(value) {
 
 
 /**
- * optional string Amount = 3;
+ * optional string Gas = 3;
  * @return {string}
  */
-proto.pb.AccountState.prototype.getAmount = function() {
+proto.pb.AccountState.prototype.getGas = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -3349,7 +3319,7 @@ proto.pb.AccountState.prototype.getAmount = function() {
  * @param {string} value
  * @return {!proto.pb.AccountState} returns this
  */
-proto.pb.AccountState.prototype.setAmount = function(value) {
+proto.pb.AccountState.prototype.setGas = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
