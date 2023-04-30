@@ -3,6 +3,6 @@
 # npm i -g browserify
 rm -rf ./src/js
 mkdir ./src/js
-protoc --js_out=import_style=commonjs,binary:./src/js -I ./src/protos block.proto
-browserify exports.js > ./src/js/block.js
-echo "generated block.js"
+protoc --js_out=import_style=commonjs,binary:./src/js -I ./src/protos data.proto
+browserify exports.js > ./src/js/data.js
+echo "generated data.js"
